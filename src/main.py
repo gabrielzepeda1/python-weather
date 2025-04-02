@@ -2,10 +2,18 @@ import requests
 
 
 def main():
-    city = input("Enter the name of a city: ")
-    latitude, longitude = get_coordinates(city)
-    temperature = get_weather(latitude, longitude)
-    print(f"The current temperature in {city} is {temperature}°C")
+    city = input("Enter the name of a city: ") 
+
+    try:
+        latitude, longitude = get_coordinates(city)
+        temperature = get_weather(latitude, longitude)
+        print(f"The current temperature in {city} is {temperature}°C")
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+    
+    except Exception as e: 
+        print("Something went wrong. Please try again.", e)
 
 
 def get_coordinates(city):
