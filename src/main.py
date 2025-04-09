@@ -51,6 +51,9 @@ def get_weather(latitude, longitude):
     except requests.RequestException: 
         raise ConnectionError("Failed to connect to the weather API.")
     
+    if "current_weather" not in data or "temperature" not in data["current_weather"]:
+        raise ValueError("Weather data is unavailable or incomplete.")
+
     return data["current_weather"]["temperature"]
 
 if __name__ == "__main__":
